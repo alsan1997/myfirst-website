@@ -17,7 +17,7 @@ class Search extends Component{
       <div>
         <img/>
         <input type="text"/>
-        Search
+        Filter
       </div>
     );
   }
@@ -33,6 +33,8 @@ class Playlist extends Component{
           <li>Song 1</li>
           <li>Song 2</li>
           <li>Song 3</li>
+          <li>Song 4</li>
+          <li>Song 5</li>
         </ul>
       </div>
     );
