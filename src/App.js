@@ -26,7 +26,7 @@ class Search extends Component{
 class Playlist extends Component{
   render(){
     return(
-      <div style={{width: "25%"}}>
+      <div style={{width: "25%", display: 'inline-block'}}>
         <img/>
         <h3> Playlist name </h3>
         <ul>
