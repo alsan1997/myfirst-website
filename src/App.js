@@ -38,7 +38,7 @@ class AggregatePlaylist extends Component{
   render(){
     return(
       <div style={{width:"40%", display: 'inline-block'}} className="Aggregate">
-        <h2 style = {{color: '#fff2'}}> {this.props.playlists.length} playlists </h2>
+        <h2> {this.props.playlists.length} playlists </h2>
       </div>
     );
   }
@@ -55,7 +55,7 @@ class AggregateHour extends Component{
 
     return(
       <div style={{width:"40%", display: 'inline-block'}} className="Aggregate">
-        <h2 style = {{color: '#fff2'}}> {Math.round(totalDuration / 3600)} hours </h2>
+        <h2> {Math.round(totalDuration / 3600)} hours </h2>
       </div>
     );
   }
@@ -66,7 +66,7 @@ class Search extends Component{
     return(
       <div>
         <img/>
-        <input type="text"/>
+        <input type="text" onKeyUp = {event => this.props.onTextChange(event.target.value)}/>
         Filter
       </div>
     );
@@ -78,13 +78,11 @@ class Playlist extends Component{
     return(
       <div style={{width: "25%", display: 'inline-block'}}>
         <img/>
-        <h3> Playlist name </h3>
+        <h3>{this.props.playlist.name}</h3>
         <ul>
-          <li>Song 1</li>
-          <li>Song 2</li>
-          <li>Song 3</li>
-          <li>Song 4</li>
-          <li>Song 5</li>
+          {this.props.playlist.songs.map(song =>
+          	<li>{song.name}</li>
+          )}
         </ul>
       </div>
     );
@@ -94,7 +92,10 @@ class Playlist extends Component{
 class App extends Component {
 	constructor(){
 		super();
-		this.state = {serverData: {}}
+		this.state = {
+			serverData: {},
+			filterString: ''
+		}
 	}
 
 	componentDidMount(){
@@ -104,6 +105,12 @@ class App extends Component {
 	}
 
   render() {
+  	let playlistResult = this.state.serverData.user ? this.state.serverData.user.playlist
+  	.filter(playlist => 
+      playlist.name.toLowerCase().includes(
+        this.state.filterString.toLowerCase())
+    ) : []
+    
     return (
        <div className="App">
          {
@@ -111,13 +118,14 @@ class App extends Component {
          <div>
            <h1> {this.state.serverData.user.name} mySpotify </h1>
  
-           <AggregatePlaylist playlists={this.state.serverData.user.playlist}/>
-         	 <AggregateHour playlists={this.state.serverData.user.playlist}/>
+           <AggregatePlaylist playlists={playlistResult}/>
+         	 <AggregateHour playlists={playlistResult}/>
          
-           <Search/>
-           <Playlist/>
-           <Playlist/>
-           <Playlist/>
+           <Search onTextChange={text => this.setState({filterString: text})}/>
+           {playlistResult.map(playlist =>
+              <Playlist playlist={playlist}/>   
+           )}
+        
          </div> : <h2> Loading your Spotify profile... </h2>
          }
        </div>
