@@ -19,14 +19,14 @@ ReactDOM.render(
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
           <ul className="navbar-nav mr-auto">
-          <li><NavLink exact className="nav-link" to="/">Home</NavLink></li>
+          <li><NavLink exact className="nav-link" to="/">Playlist</NavLink></li>
           <li><NavLink className="nav-link"to="/login">Login</NavLink></li>
-          <li><NavLink className="nav-link" to="/playlist">Playlist</NavLink></li>
+          <li><NavLink className="nav-link" to="/home">Home</NavLink></li>
           </ul>         
         </div>   
       </nav>
-    <Route exact path ="/" component={Home}/>
-    <Route path="/playlist" component={Playlist}/>
+    <Route exact path ="/" component={Playlist}/>
+    <Route path="/home" component={Home}/>
     <Route path="/login" component={Login}/>
 
   </div>
