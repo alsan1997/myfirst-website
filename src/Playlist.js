@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import queryString from 'query-string'; 
 
-// 6f2c8665b3fc4ed497b744ea39955d26 id
-// 4a9ae37d5a414b2c9bb6620d714e9e6e secret
+// set SPOTIFY_CLIENT_ID=6f2c8665b3fc4ed497b744ea39955d26 id
+// set SPOTIFY_CLIENT_SECRET=4a9ae37d5a414b2c9bb6620d714e9e6e secret
 
 let hardCodedData ={
   user:{
@@ -165,10 +165,15 @@ class Pl extends Component {
     let playlistResult = 
       this.state.user &&
       this.state.playlists ?
-      this.state.playlists.filter(playlist => 
-      playlist.name.toLowerCase().includes(
-        this.state.filterString.toLowerCase()
-      )) : []
+      this.state.playlists.filter(playlist => {
+        let matchesPlaylist = playlist.name.toLowerCase().includes(
+          this.state.filterString.toLowerCase())
+        let matchesSong = playlist.songs.find(song => song.name.toLowerCase()
+          .includes(this.state.filterString.toLowerCase()))
+        return matchesPlaylist || matchesSong
+
+        
+      }) : []
     
     return (
        <div className="App">
