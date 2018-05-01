@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import './App.css';
-var BarChart = require('react-d3-components').BarChart;
-var PieChart = require('react-d3-components').PieChart;
+var BarChart = require('react-d3-components').BarChart; // Bar library
+var PieChart = require('react-d3-components').PieChart; // Pie library
+
+/*
+Handles following page
+*/
 class Following extends Component{
+  /*
+  Class' constructor
+  */
   constructor(){
     super();
     this.state = {
@@ -12,10 +19,12 @@ class Following extends Component{
       following: [] 
     }
   }
+
+  /*
+  Fetch api
+  */
 	componentDidMount(){
-	 	if(localStorage.getItem('accessToken') == null || !localStorage.getItem('accessToken')){
-	 		 
-	 		return;}
+	 	if(localStorage.getItem('accessToken') == null || !localStorage.getItem('accessToken')){return;}
 	 	else{
 	 		console.log(localStorage.getItem('accessToken'))
 	 		fetch('https://api.spotify.com/v1/me/following?type=artist', {
@@ -108,7 +117,7 @@ class Following extends Component{
 				  <h2 style={{display: 'inline-block'}}> Your genre </h2>
  
 				 
-				 <BarChart data={data} width={3000} height={600} margin={{top: 10, bottom: 50, left: 50, right: 10}}/>
+				 <BarChart data={data} width={3000} height={600} margin={{top: 10, bottom: 50, left: 50, right: 10}}/> 
 				 <PieChart data={data} width={800} height={1000} margin={{top: 10, bottom: 10, left: 100, right: 100}} sort={sort}/>
 				 </div>
 				 : 

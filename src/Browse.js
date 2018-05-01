@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
 import './App.css'; 
 //<iframe src="https://open.spotify.com/embed/track/000xQL6tZNLJzIrtIgxqSl" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+
+/*
+Handles button for playing tracks
+*/
 class Player extends Component{
 	constructor(){
 		super();
 
 		this.playerEmbed = this.playerEmbed.bind(this);
-
 	}
 
 	playerEmbed(){
-		
 		<iframe src="https://open.spotify.com/embed/track/000xQL6tZNLJzIrtIgxqSl" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 		console.log("Playing" + this.props.player.name + " - " + this.props.player.artists[0].name)
 	}
+
   render(){
   	return(
   		<div>
-  		
-  		<button onClick={this.playerEmbed} className="btn btn-outline-success my-2 my-sm-0">{this.props.player.name} - {this.props.player.artists[0].name} </button>
-  		<h2> {"\n"} </h2>
-  		<h2> {"\n"} </h2>
+  		  
+  		  <button onClick={this.playerEmbed} className="btn btn-outline-success my-2 my-sm-0">{this.props.player.name} - {this.props.player.artists[0].name} </button>
+  		  <h2> {"\n"} </h2>
+  		  <h2> {"\n"} </h2>
 
   		</div>
   	);
@@ -28,7 +31,9 @@ class Player extends Component{
 }
 
 
- 
+/*
+Handles top100 tracks
+*/
 class Browse extends Component{
 
 	constructor(){

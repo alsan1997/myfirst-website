@@ -3,6 +3,10 @@ import './App.css';
 
 // 4c9rPsINUpPdgRoFJVwEYm
 // spotify:track:4iV5W9uYEdYUVa79Axb7Rh
+
+/*
+Handles posting data
+*/
 class Posting extends Component{
 	constructor(){
 		super();
